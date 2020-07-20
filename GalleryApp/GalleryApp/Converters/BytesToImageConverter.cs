@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using Xamarin.Forms;
+
+namespace GalleryApp.Converters
+{
+	public class BytesToImageConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (!(value is byte[] bytes))
+			{
+				return null;
+			}
+
+			var stream = new MemoryStream(bytes);
+			return ImageSource.FromStream(() => stream);
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			return null;
+		}
+	}
+}
