@@ -24,6 +24,7 @@ namespace GalleryApp.iOS
         {
 	        _ = new Bootstrapper();
             global::Xamarin.Forms.Forms.Init();
+            global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental", "IndicatorView_Experimental");
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

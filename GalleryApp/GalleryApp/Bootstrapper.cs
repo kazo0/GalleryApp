@@ -38,6 +38,8 @@ namespace GalleryApp
 				ContainerBuilder.RegisterType(type.AsType());
 			}
 
+			ContainerBuilder.RegisterType<FormsLocalStorage>().As<ILocalStorage>();
+
 			PlatformInitialize();
 		}
 

@@ -8,13 +8,36 @@
              xmlns:vm="clr-namespace:GalleryApp.ViewModels;assembly=GalleryApp"
              mc:Ignorable="d"
              x:Class="GalleryApp.Views.GalleryView">
-    <ContentPage.Resources>
+	<ContentPage.Resources>
 		<ResourceDictionary>
-            <converters:BytesToImageConverter x:Key="ToImage"/>
-		</ResourceDictionary>
-    </ContentPage.Resources>
+			<converters:BytesToImageConverter x:Key="ToImage"/>
 
-    <CollectionView x:Name="Photos" ItemsSource="{Binding Photos}" EmptyView="{Binding}">
+			<Style TargetType="Grid">
+				<Setter Property="VisualStateManager.VisualStateGroups">
+					<VisualStateGroupList>
+						<VisualStateGroup x:Name="CommonStates">
+							<VisualState x:Name="Normal" />
+							<VisualState x:Name="Selected">
+								<VisualState.Setters>
+									<Setter Property="Opacity" Value="0.5" />
+								</VisualState.Setters>
+							</VisualState>
+						</VisualStateGroup>
+					</VisualStateGroupList>
+				</Setter>
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Select" Clicked="MenuItem_OnClicked"/>
+    </ContentPage.ToolbarItems>
+
+	<CollectionView x:Name="Photos" 
+                    ItemsSource="{Binding Photos}" 
+                    EmptyView="{Binding}"
+                    RemainingItemsThreshold="5"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadMore}"
+                    SelectionMode="Multiple">
         <CollectionView.ItemsLayout>
 	        <GridItemsLayout Span="3"
                              Orientation="Vertical"

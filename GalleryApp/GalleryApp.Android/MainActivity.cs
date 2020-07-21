@@ -22,6 +22,7 @@ namespace GalleryApp.Droid
             base.OnCreate(savedInstanceState);
 
             _ = new Bootstrapper();
+            global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental", "IndicatorView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
